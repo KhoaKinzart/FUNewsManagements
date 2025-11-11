@@ -1,0 +1,80 @@
+﻿@page
+@model ASM1.Pages.NewsArticles.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>NewsArticle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NewsArticle.NewsArticleID" />
+            <div class="form-group">
+                <label asp-for="NewsArticle.NewsTitle" class="control-label"></label>
+                <input asp-for="NewsArticle.NewsTitle" class="form-control" />
+                <span asp-validation-for="NewsArticle.NewsTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsArticle.Headline" class="control-label"></label>
+                <input asp-for="NewsArticle.Headline" class="form-control" />
+                <span asp-validation-for="NewsArticle.Headline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsArticle.CreatedDate" class="control-label"></label>
+                <input asp-for="NewsArticle.CreatedDate" class="form-control" />
+                <span asp-validation-for="NewsArticle.CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsArticle.NewsContent" class="control-label"></label>
+                <input asp-for="NewsArticle.NewsContent" class="form-control" />
+                <span asp-validation-for="NewsArticle.NewsContent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsArticle.NewsSource" class="control-label"></label>
+                <input asp-for="NewsArticle.NewsSource" class="form-control" />
+                <span asp-validation-for="NewsArticle.NewsSource" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsArticle.CategoryID" class="control-label"></label>
+                <select asp-for="NewsArticle.CategoryID" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="NewsArticle.CategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsArticle.NewsStatus" class="control-label"></label>
+                <input asp-for="NewsArticle.NewsStatus" class="form-control" />
+                <span asp-validation-for="NewsArticle.NewsStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsArticle.CreatedBy" class="control-label"></label>
+                <select asp-for="NewsArticle.CreatedByID" class="form-control" asp-items="ViewBag.CreatedById"></select>
+                <span asp-validation-for="NewsArticle.CreatedByID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsArticle.UpdatedByID" class="control-label"></label>
+                <select asp-for="NewsArticle.UpdatedByID" class="form-control" asp-items="ViewBag.UpdatedById"></select>
+                <span asp-validation-for="NewsArticle.UpdatedByID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsArticle.ModifiedDate" class="control-label"></label>
+                <input asp-for="NewsArticle.ModifiedDate" class="form-control" />
+                <span asp-validation-for="NewsArticle.ModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
