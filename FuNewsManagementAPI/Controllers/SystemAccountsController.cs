@@ -21,7 +21,7 @@ namespace FuNewsManagementAPI.Controllers
         }
 
         // GET: api/SystemAccounts
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,STAFF")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SystemAccount>>> GetSystemAccounts()
         {
@@ -31,7 +31,7 @@ namespace FuNewsManagementAPI.Controllers
 
         // GET: api/SystemAccounts/5
         [HttpGet("{id}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,STAFF")]
         public async Task<ActionResult<SystemAccount>> GetSystemAccount(short id)
         {
             var account = await Task.Run(() => _systemAccountRepository.GetSystemAccountById(id));
@@ -44,7 +44,7 @@ namespace FuNewsManagementAPI.Controllers
 
         // PUT: api/SystemAccounts/5
         [HttpPut("{id}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,STAFF")]
         public async Task<IActionResult> PutSystemAccount(short id, SystemAccount systemAccount)
         {
             if (id != systemAccount.AccountID)
@@ -66,7 +66,7 @@ namespace FuNewsManagementAPI.Controllers
 
         // POST: api/SystemAccounts
         [HttpPost]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,STAFF")]
         public async Task<ActionResult<SystemAccount>> PostSystemAccount(SystemAccount systemAccount)
         {
             try
@@ -83,7 +83,7 @@ namespace FuNewsManagementAPI.Controllers
 
         // DELETE: api/SystemAccounts/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,STAFF")]
         public async Task<IActionResult> DeleteSystemAccount(short id)
         {
             var account = await Task.Run(() => _systemAccountRepository.GetSystemAccountById(id));

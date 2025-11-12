@@ -6,7 +6,7 @@ using Repositories;
 
 namespace FuNewsManagementAPI.Controllers
 {
-    [ApiExplorerSettings(IgnoreApi = true)] // 👈 tránh lỗi Swagger
+    [ApiExplorerSettings(IgnoreApi = true)] 
     public class ArticlesController : ODataController
     {
         private readonly INewsArticleRepository _articleRepo;

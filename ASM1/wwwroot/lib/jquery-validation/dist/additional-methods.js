@@ -51,7 +51,8 @@
  */
 $.validator.addMethod( "abaRoutingNumber", function( value ) {
 	var checksum = 0;
-	var tokens = value.split( "" );
+
+	s = value.split("");
 	var length = tokens.length;
 
 	// Length Check

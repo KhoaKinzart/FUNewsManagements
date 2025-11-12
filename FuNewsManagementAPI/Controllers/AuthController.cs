@@ -24,12 +24,11 @@ namespace FuNewsManagementAPI.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
-            // 🔹 Lấy cấu hình admin trong appsettings.json
+            
             var adminSection = _config.GetSection("AdminAccount");
             var adminEmail = adminSection["Email"];
             var adminPassword = adminSection["Password"];
 
-            // 🔹 Nếu khớp tài khoản admin => login thành công
             if (request.Email == adminEmail && request.Password == adminPassword)
             {
                 var adminUser = new SystemAccount
@@ -37,14 +36,14 @@ namespace FuNewsManagementAPI.Controllers
                     AccountID = 0,
                     AccountName = "System Administrator",
                     AccountEmail = adminEmail,
-                    AccountRole = 99, // dùng số đặc biệt cho Admin
+                    AccountRole = 99, 
                     AccountPassword = adminPassword
                 };
                 var token = GenerateJwtToken(adminUser, "ADMIN");
                 return Ok(new { token });
             }
 
-            // 🔹 Xác thực user thường (trong DB)
+         
             var user = _accountRepo
                 .GetSystemAccounts()
                 .FirstOrDefault(u => u.AccountEmail == request.Email && u.AccountPassword == request.Password);
@@ -52,7 +51,6 @@ namespace FuNewsManagementAPI.Controllers
             if (user == null)
                 return Unauthorized("Invalid email or password");
 
-            // 🔹 Phân loại role (1 = Staff, 2 = Editor, tùy bạn quy ước)
             string role = user.AccountRole == 1 ? "STAFF" : "EDITOR";
 
             var jwt = GenerateJwtToken(user, role);
